@@ -6,6 +6,8 @@ use Yii;
 use yii\web\Controller;
 use app\models\Article;
 use app\models\Category;
+use app\models\Tag;
+
 class BlogController extends Controller
 {
 
@@ -70,5 +72,22 @@ class BlogController extends Controller
 
         return $this->render('index', compact('model'));
     }
+
+
+
+    public function actionTag($id)
+    {
+        $tag = Tag::findOne($id);
+
+        //Заголовок контентной части в layout
+        $this->view->params['subTitle'] = Yii::t('app', 'ALL BY TAG').' #'.$tag['title'];
+                                    
+        
+        
+        $model['articles'] = $tag->articles;
+        return $this->render('index', compact('model'));
+    }
+
+
 
 }

@@ -99,7 +99,7 @@ AppAsset::register($this);
                         <input type="submit" value="">
                     </div>
                     
-                    <h3> <?=Yii::t('app', 'CATEGORIES')?></h3>
+                    <h3><?=Yii::t('app', 'CATEGORIES')?></h3>
                     <?=CategoryNav::widget(); ?>
                     
                     <h3>POPULAR POSTS</h3>
@@ -109,7 +109,7 @@ AppAsset::register($this);
                         <li><h5> Popularised Post</h5><span class="g"> </span><a href="#">956</a><span class="h"> </span><a href="#">Vall</a></li>
                     </ul>
                     
-                    <h3>POPULAR TAGS</h3>
+                    <h3><?=Yii::t('app', 'POPULAR TAGS')?></h3>
                     <?=PopularTags::widget()?>
                     
                     <h3>SUBSCRIBE FOR NEWSLETTER</h3>

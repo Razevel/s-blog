@@ -28,6 +28,15 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 		  	<a href="<?=Url::to(['blog/article', 'id' => $article['id']])?>">
 				<h3><?=$article['title']?></h3>
 			</a>
+			<p style="margin: 15px 0px">
+			
+			<?php foreach($article->tags as $tag): ?>
+				<a href="<?=Url::to(['blog/tag', 'id' => $tag['id']])?>">
+					#<?=$tag['title']?>
+				</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<?php endforeach;?>
+			
+			</p>
 			<ul class="blog-list">
 			  	<li>
 			  		<span class="mike"> </span>
@@ -43,11 +52,14 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 				</li>
 			</ul>
 			<p><?=StringHelper::truncate($article['text'], 150, '...')?></p>
-			<a class="bwn" href="<?=Url::to(['blog/article', 'id' => $article['id']])?>"><?=Yii::t('app', 'READ MORE')?></a>
+			<a class="bwn" href="<?=Url::to(['blog/article', 'id' => $article['id']])?>">
+				<?=Yii::t('app', 'READ MORE')?>
+			</a>
 		</div>
-		<div class="clearfix"> </div>
+		<div class="clearfix"></div>
 	</div>
 </div>
+<hr style="border-color: rgba(0,0,0,0.3);">
 <?php endforeach; ?>
 
 <div class="pag-nations">

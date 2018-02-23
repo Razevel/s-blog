@@ -14,6 +14,7 @@ return [
 
 	//Menu
 	'CATEGORIES' => 'КАТЕГОРИИ',
+	'POPULAR TAGS' => 'ПОПУЛЯРНЫЕ ТЕГИ',
 
 	//Article
 	'Comments' => 'Коментарии', 
@@ -26,7 +27,7 @@ return [
     'Your Email' => 'Ваш email',
     'Message' => 'Сообщение',
     'ALL IN CATEGORY' => 'ВСЕ ЗАПИСИ ИЗ КАТЕГОРИИ',
-    '' => '',
+    'ALL BY TAG' => 'ВСЕ ЗАПИСИ ПО ТЕГУ',
     '' => '',
 
 ];
