@@ -1,6 +1,7 @@
 <?php
 
 namespace app\components\CategoryNav;
+use Yii;
 use yii\base\Widget;
 use app\models\Category;
 class CategoryNav extends Widget{
@@ -17,10 +18,19 @@ class CategoryNav extends Widget{
 
 	public function run()
 	{
+		// Пробуем извлечь $data из кэша.
+		$data = Yii::$app->cache->get('categoryNav');
+
+		if ($data !== false) {
+		    // $data в кэше, возвращаем
+		    return $data;
+		}
 		$this->data = Category::find()->indexBy('id')->asArray()->all();
 		$this->tree = $this->getTree();
 		$this->menuHtml = $this->getMenuHtml($this->tree);
-		return sprintf('<ul class="cd-accordion-menu animated">%s</ul>', $this->menuHtml) ;
+		$data = sprintf('<ul class="cd-accordion-menu animated">%s</ul>', $this->menuHtml);
+		Yii::$app->cache->set('categoryNav', $data, 15*60);
+		return $data;
 	}
 
 	protected function getTree($value='')

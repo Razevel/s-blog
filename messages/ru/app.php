@@ -18,8 +18,15 @@ return [
 	//Article
 	'Comments' => 'Коментарии', 
 	'READ MORE' => 'ПОДРОБНЕЕ',
-	'LEAVE A COMMENT' => '',
+	'LEAVE A COMMENT' => 'ОСТАВЬТЕ КОМЕНТАРИЙ',
+	'LEAVE THE COMMENT' => 'ОПУБЛИКОВАТЬ КОМЕНТАРИЙ',
 	'Tell everyone what You think about it.' => 'Расскажите, что вы думаете об этом.',
     'Leave a comment so that other users know about it.' => 'Оставьте коментарий, чтобы все его увидели.',
+    'Your Name' => 'Ваше имя',
+    'Your Email' => 'Ваш email',
+    'Message' => 'Сообщение',
+    '' => '',
+    '' => '',
+    '' => '',
 
 ];

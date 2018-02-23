@@ -45,15 +45,16 @@ $pub_time = strtotime($article['pub_date']);
 </div>
 
 <div class="blog-contact">
+	<a name="comments"></a>
     <h3><?=Yii::t('app', 'LEAVE A COMMENT')?></h3>
     <p>
-    	<?=Yii::t('app', 'Tell everyone what You think about it.')?> 
+    	<?=Yii::t('app', '')?> 
     	<?=Yii::t('app', 'Leave a comment so that other users know about it.')?>
     	
     </p>
-    <input type="text" value="Your Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Name';}"/>
-    <input type="text" value="Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Email';}"/>
-    <textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}"/>Message</textarea>
-    <input type="submit" value="LEAVE THE REPLY">
+    <input type="text" value="<?=Yii::t('app', 'Your Name')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Your Name')?>;}"/>
+    <input type="text" value="<?=Yii::t('app', 'Your Email')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Your Email')?>;}"/>
+    <textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Message')?>'';}"/><?=Yii::t('app', 'Message')?></textarea>
+    <input type="submit" value="<?=Yii::t('app', 'LEAVE THE COMMENT')?>">
 </div>
 <div class="clearfix"> </div>

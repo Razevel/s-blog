@@ -25,7 +25,7 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 		   	<p><?=date('M', $pub_time)?></p>
 		</div>
 		<div class="grid-right">
-		  	<a href="#">
+		  	<a href="<?=Url::to(['blog/article', 'id' => $article['id']])?>">
 				<h3><?=$article['title']?></h3>
 			</a>
 			<ul class="blog-list">
@@ -39,11 +39,11 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 			  	</li>
 				<li>
 					<span class="comm"> </span>
-					<a href="#"><?=Yii::t('app', 'Comments')?> (0)</a>
+					<a href="<?=Url::to(['blog/article', 'id' => $article['id'], '#' => 'comments'])?>"><?=Yii::t('app', 'Comments')?> (0)</a>
 				</li>
 			</ul>
 			<p><?=StringHelper::truncate($article['text'], 150, '...')?></p>
-			<a class="bwn" href="single.html"><?=Yii::t('app', 'READ MORE')?></a>
+			<a class="bwn" href="<?=Url::to(['blog/article', 'id' => $article['id']])?>"><?=Yii::t('app', 'READ MORE')?></a>
 		</div>
 		<div class="clearfix"> </div>
 	</div>

@@ -33,13 +33,13 @@ class BlogController extends Controller
         return $this->render('index', compact('model'));
     }
 
-    public function actionArticle()
+    public function actionArticle($id)
     {
         //Заголовок контентной части в layout
         $this->view->params['subTitle'] = '';
        
         
-        $model['article'] = Article::find()->one();
+        $model['article'] = Article::findOne($id);
 
         return $this->render('article', compact('model'));
     }
