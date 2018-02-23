@@ -37,11 +37,21 @@ $pub_time = strtotime($article['pub_date']);
 			</ul>
 	</div>
 	<div class="clearfix"> </div>
+
 </div>
+
 <div class="blog-para">
 
 <?=$article['text']?>
 
+</div>
+
+<div class="tags">
+	<ul>
+		<?php foreach ($article->tags as $tag): ?>
+		<li><a href="<?=Url::to(['blog/tag', 'id' => $tag['id']])?>">#<?=$tag['title']?></a></li>
+		<?php endforeach;?>
+	</ul>
 </div>
 
 <div class="blog-contact">
@@ -50,7 +60,6 @@ $pub_time = strtotime($article['pub_date']);
     <p>
     	<?=Yii::t('app', '')?> 
     	<?=Yii::t('app', 'Leave a comment so that other users know about it.')?>
-    	
     </p>
     <input type="text" value="<?=Yii::t('app', 'Your Name')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Your Name')?>;}"/>
     <input type="text" value="<?=Yii::t('app', 'Your Email')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Your Email')?>;}"/>

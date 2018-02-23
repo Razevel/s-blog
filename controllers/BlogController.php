@@ -49,8 +49,8 @@ class BlogController extends Controller
         $this->view->params['subTitle'] = '';
        
         
+        
         $model['article'] = Article::findOne($id);
-
         return $this->render('article', compact('model'));
     }
 

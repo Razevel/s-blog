@@ -57,7 +57,7 @@ class CategoryNav extends Widget{
 	protected function catToTemplate($category)	
 	{
 		ob_start();
-		include __DIR__.'/template.php';
+		include '/template.php';
 		return ob_get_clean();
 	}
 

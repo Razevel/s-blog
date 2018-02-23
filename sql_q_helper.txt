@@ -1,0 +1,20 @@
+
+ ол-во просмотров каждого тега за last 50 постов(исправить логическую ошибку).
+
+SELECT last50.tag_id, last50.tag_title, SUM(last50.article_views) as 'total_views'
+FROM
+(
+    SELECT 
+    t.id as 'tag_id', t.title as 'tag_title', 
+    a.id as 'article_id', a.title as 'article_title', 
+    a.views  as 'article_views', a.pub_date as 'pub_date' 
+    from tags as t
+	LEFT JOIN article_tags as atag
+	on t.id=atag.tag_id
+	LEFT JOIN articles as a
+	on atag.article_id=a.id
+	ORDER BY a.pub_date DESC
+	LIMIT 50
+) as last50
+GROUP BY(last50.tag_id)
+ORDER BY total_views desc;

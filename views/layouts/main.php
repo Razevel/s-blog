@@ -9,6 +9,7 @@ use yii\helpers\Url;
 use \yii\helpers\StringHelper;
 use app\assets\AppAsset;
 use app\components\CategoryNav\CategoryNav;
+use app\components\PopularTags\PopularTags;
 
 
 AppAsset::register($this);
@@ -109,16 +110,7 @@ AppAsset::register($this);
                     </ul>
                     
                     <h3>POPULAR TAGS</h3>
-                    <ul class="popular-tag">
-                        <li><a href="#">Design</a></li>
-                        <li><a href="#">Branding</a></li>
-                        <li><a href="#">Art</a></li>
-                        <li><a href="#">Developing</a></li>
-                        <li><a href="#">CSS</a></li>
-                        <li><a href="#">HTML</a></li>
-                        <li><a href="#">Wordpress</a></li>
-                        <li><a href="#">Photography</a></li>
-                    </ul>
+                    <?=PopularTags::widget()?>
                     
                     <h3>SUBSCRIBE FOR NEWSLETTER</h3>
                     <div class="subscribe">
