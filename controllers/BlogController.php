@@ -9,6 +9,16 @@ use app\models\Category;
 class BlogController extends Controller
 {
 
+
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+
     /**
      * Displays homepage.
      *
@@ -42,6 +52,23 @@ class BlogController extends Controller
         $model['article'] = Article::findOne($id);
 
         return $this->render('article', compact('model'));
+    }
+
+    public function actionCategory($id)
+    {
+        //Заголовок контентной части в layout
+        $category = Category::findOne($id);
+        $this->view->params['subTitle'] =   sprintf("%s \"%s\"",
+                                                Yii::t('app', 'ALL IN CATEGORY'),
+                                                $category['title']
+                                            );
+        
+        $model['articles'] = Article::find()
+                                    ->where(['category_id' => $id])
+                                    ->orderBy(['pub_date' => SORT_DESC])
+                                    ->all();
+
+        return $this->render('index', compact('model'));
     }
 
 }

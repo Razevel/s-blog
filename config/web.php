@@ -27,7 +27,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'blog/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -52,6 +52,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '/' => 'blog/index',
+
             ],
         ],
         

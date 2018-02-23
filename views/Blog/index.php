@@ -35,7 +35,7 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 			  	</li>
 			  	<li>
 			  		<span class="box"> </span>
-			  		<a href="#"><?=$article['category_id']?></a>
+			  		<a href="#"><?=$article->category['title']?></a>
 			  	</li>
 				<li>
 					<span class="comm"> </span>

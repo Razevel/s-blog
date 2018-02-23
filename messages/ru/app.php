@@ -25,7 +25,7 @@ return [
     'Your Name' => 'Ваше имя',
     'Your Email' => 'Ваш email',
     'Message' => 'Сообщение',
-    '' => '',
+    'ALL IN CATEGORY' => 'ВСЕ ЗАПИСИ ИЗ КАТЕГОРИИ',
     '' => '',
     '' => '',
 

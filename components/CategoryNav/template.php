@@ -1,3 +1,8 @@
+<?php
+use yii\helpers\Url;
+?>
+
+
 <?php if(isset($category['childs'])): ?>
 	
 	<li class="has-children">
@@ -11,6 +16,10 @@
 
 
 <?php if(!isset($category['childs'])): ?>
-	<li><a href="#"><?=$category['title']?></a></li>
+	<li>
+		<a href="<?=Url::to(['blog/category', 'id' => $category['id']])?>">
+			<?=$category['title']?>
+		</a>
+	</li>
 <?php endif; ?>
 
