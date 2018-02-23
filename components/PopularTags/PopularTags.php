@@ -14,6 +14,13 @@ class PopularTags extends Widget{
 
 	public function run()
 	{
+		$data = Yii::$app->cache->get('popularTags');
+
+		if ($data !== false) {
+		    // $data в кэше, возвращаем
+		    return $data;
+		}
+		
 		$tags = TopTagsOfLast50::find()->all();
 		$html = '<ul class="popular-tag">';
 		foreach($tags as $tag) 
@@ -26,6 +33,7 @@ class PopularTags extends Widget{
 		}
 
 		$html .= '</ul>';
+		Yii::$app->cache->set('popularTags', $html, 15*60);
 		return $html;
 	}
 

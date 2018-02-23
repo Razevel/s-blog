@@ -11,7 +11,6 @@ use app\models\Tag;
 class BlogController extends Controller
 {
 
-
     public function actions()
     {
         return [
@@ -37,9 +36,12 @@ class BlogController extends Controller
 		*/
     	$max = Yii::$app->params['mainPageRules']['aticlesCount'];
         
+        //Получаем N самых свежих записей.
         $model['articles'] = Article::find()
+                                    ->orderby(['pub_date'=>SORT_DESC])
         							->limit($max)
-        							->orderby(['pub_date'=>SORT_DESC])
+                                    ->with('category')
+                                    ->with('tags')
         							->all();
 
         return $this->render('index', compact('model'));
@@ -50,40 +52,39 @@ class BlogController extends Controller
         //Заголовок контентной части в layout
         $this->view->params['subTitle'] = '';
        
-        
-        
+        //Передаем в представление статью
         $model['article'] = Article::findOne($id);
         return $this->render('article', compact('model'));
     }
 
     public function actionCategory($id)
     {
-        //Заголовок контентной части в layout
+        //Получаем категорию
         $category = Category::findOne($id);
+        
+        //Заголовок контентной части в layout
         $this->view->params['subTitle'] =   sprintf("%s \"%s\"",
                                                 Yii::t('app', 'ALL IN CATEGORY'),
                                                 $category['title']
                                             );
-        
-        $model['articles'] = Article::find()
-                                    ->where(['category_id' => $id])
+        //Получаем статьи
+        $model['articles'] = $category->getArticles()
                                     ->orderBy(['pub_date' => SORT_DESC])
                                     ->all();
 
+        //Передаем в представление все статьи с данной категорией
         return $this->render('index', compact('model'));
     }
 
-
-
     public function actionTag($id)
     {
+        //Получаем тег
         $tag = Tag::findOne($id);
 
         //Заголовок контентной части в layout
         $this->view->params['subTitle'] = Yii::t('app', 'ALL BY TAG').' #'.$tag['title'];
-                                    
-        
-        
+
+        //Передаем в представление все статьи с данным тегом
         $model['articles'] = $tag->articles;
         return $this->render('index', compact('model'));
     }

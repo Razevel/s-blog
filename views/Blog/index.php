@@ -30,7 +30,7 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 			</a>
 			<p style="margin: 15px 0px">
 			
-			<?php foreach($article->tags as $tag): ?>
+			<?php foreach($article['tags'] as $tag): ?>
 				<a href="<?=Url::to(['blog/tag', 'id' => $tag['id']])?>">
 					#<?=$tag['title']?>
 				</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,7 +44,7 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 			  	</li>
 			  	<li>
 			  		<span class="box"> </span>
-			  		<a href="#"><?=$article->category['title']?></a>
+			  		<a href="#"><?=$article['category']['title']?></a>
 			  	</li>
 				<li>
 					<span class="comm"> </span>
