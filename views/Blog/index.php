@@ -1,6 +1,6 @@
 <?php
 
-use app\components\CategoryNav;
+use app\components\CategoryNav\CategoryNav;
 
 $this->title = Yii::t('app','Home').' - SmileBlog.ru';
 ?>

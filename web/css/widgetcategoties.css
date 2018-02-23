@@ -82,7 +82,7 @@ Main Components
   cursor: pointer;
 }
 .cd-accordion-menu label::before, .cd-accordion-menu label::after {
-  background-image: url(../img/cd-icons.svg);
+  background-image: url(../images/cd-icons.svg);
   background-repeat: no-repeat;
 }
 .cd-accordion-menu label::before {
