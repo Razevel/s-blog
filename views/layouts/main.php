@@ -6,7 +6,10 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use \yii\helpers\StringHelper;
 use app\assets\AppAsset;
+use app\components\CategoryNav\CategoryNav;
+
 
 AppAsset::register($this);
 ?>
@@ -80,7 +83,56 @@ AppAsset::register($this);
     </div>
 </div>
 <div id="main-content">
-<?= $content ?>
+    <div class="blog">
+        <div class="container">
+            <div class="blog-main">
+                <div class="blog-top">
+                    <?=$this->params['subTitle']?>
+                </div>
+                <div class="col-md-8 blog-left">
+                    <?= $content ?>
+                </div>
+                <div class="col-md-4 blog-right"> 
+                    <div class="sear">
+                        <input type="text" value="SEARCH.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'SEARCH..';}"/>
+                        <input type="submit" value="">
+                    </div>
+                    
+                    <h3> <?=Yii::t('app', 'CATEGORIES')?></h3>
+                    <?=CategoryNav::widget(); ?>
+                    
+                    <h3>POPULAR POSTS</h3>
+                    <ul class="popular">
+                        <li><h5> Make a Type Specimen Book</h5><span class="g"> </span><a href="#">1280</a><span class="h"> </span><a href="#">Milk</a></li>
+                        <li><h5>Most Popular Post</h5><span class="g"> </span><a href="#">1011</a><span class="h"> </span><a href="#">Elly</a></li>
+                        <li><h5> Popularised Post</h5><span class="g"> </span><a href="#">956</a><span class="h"> </span><a href="#">Vall</a></li>
+                    </ul>
+                    
+                    <h3>POPULAR TAGS</h3>
+                    <ul class="popular-tag">
+                        <li><a href="#">Design</a></li>
+                        <li><a href="#">Branding</a></li>
+                        <li><a href="#">Art</a></li>
+                        <li><a href="#">Developing</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">Wordpress</a></li>
+                        <li><a href="#">Photography</a></li>
+                    </ul>
+                    
+                    <h3>SUBSCRIBE FOR NEWSLETTER</h3>
+                    <div class="subscribe">
+                        <p>Duis vitae velit mollis,Pellentesque lorem</p>
+                    <div class="sub">
+                        <input type="text" value="YOUR EMAIL ADDRESS" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'YOUR EMAIL ADDRESS';}"/>
+                        <input type="submit" value="SUBSCRIBE">
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="footer">
     <div class="container">

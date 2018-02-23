@@ -16,7 +16,10 @@ class BlogController extends Controller
      */
     public function actionIndex()
     {
-    	/**
+        //Заголовок контентной части в layout
+        $this->view->params['subTitle'] = Yii::t('app', 'NEW ARTICLES');
+    	
+        /**
 		* В параметрах есть блок настроек главной страницы,
 		* в том числе кол-во новых записей.
 		*/
