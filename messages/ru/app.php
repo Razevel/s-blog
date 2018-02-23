@@ -1,6 +1,8 @@
 <?php
 
 return [
+	//Titles
+	'Home' => 'Главная',
 
 	/* Layout main */
 	'BLOG' => 'БЛОГ',
