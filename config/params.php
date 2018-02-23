@@ -11,4 +11,8 @@ return [
     	'ru-RU',
     	'en-US',
     ],
+    'mainPageRules' => [
+        'aticlesCount' => '3',
+
+    ]
 ];

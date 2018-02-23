@@ -56,7 +56,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="header">
             <div class="logo">
-                <a href="<?=Url::to(['site/index']);?>"> 
+                <a href="<?=Url::to(['blog/index']);?>"> 
                     <img src="<?=Url::to('@web/images/logo.png')?>" alt="SmileBlog Logo"/> 
                 </a>
             </div>
@@ -66,7 +66,7 @@ AppAsset::register($this);
             <div class="clear"> </div>
             <div class="navg">
                 <ul class="res">
-                    <li><a class="active" href="<?=Url::to(['site/index']);?>"><?=Yii::t('app', 'BLOG')?></a></li>
+                    <li><a class="active" href="<?=Url::to(['blog/index']);?>"><?=Yii::t('app', 'BLOG')?></a></li>
                 </ul>
                 <script>
                     $( "span.menu").click(function() {
@@ -88,7 +88,7 @@ AppAsset::register($this);
             <div class="footer-navg">
                 <ul>
                     <li>
-                        <a class="active" href="<?=Url::to(['site/index']);?>"><?=Yii::t('app', 'BLOG')?></a>
+                        <a class="active" href="<?=Url::to(['blog/index']);?>"><?=Yii::t('app', 'BLOG')?></a>
                     </li>
                 </ul>
             </div>

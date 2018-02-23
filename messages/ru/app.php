@@ -2,8 +2,8 @@
 
 return [
 	//Titles
-	'Home' => 'Главная',
-
+	'NEW ARTICLES' => 'НОВЫЕ ЗАПИСИ',
+	'New articles' => 'Новые записи',
 	/* Layout main */
 	'BLOG' => 'БЛОГ',
 	'News letter' => 'Новостная рассылка',
@@ -11,5 +11,12 @@ return [
 	'Subscribe' => 'Подписаться',
 	'Follow us' => 'Мы в соцсетях',
 	'Contact us' => 'Контакты',
+
+	//Menu
+	'CATEGORIES' => 'КАТЕГОРИИ',
+
+	//Article
+	'Comments' => 'Коментарии', 
+	'READ MORE' => 'ПОДРОБНЕЕ',
 
 ];
