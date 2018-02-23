@@ -32,4 +32,16 @@ class BlogController extends Controller
 
         return $this->render('index', compact('model'));
     }
+
+    public function actionArticle()
+    {
+        //Заголовок контентной части в layout
+        $this->view->params['subTitle'] = '';
+       
+        
+        $model['article'] = Article::find()->one();
+
+        return $this->render('article', compact('model'));
+    }
+
 }

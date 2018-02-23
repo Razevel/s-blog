@@ -18,5 +18,8 @@ return [
 	//Article
 	'Comments' => 'Коментарии', 
 	'READ MORE' => 'ПОДРОБНЕЕ',
+	'LEAVE A COMMENT' => '',
+	'Tell everyone what You think about it.' => 'Расскажите, что вы думаете об этом.',
+    'Leave a comment so that other users know about it.' => 'Оставьте коментарий, чтобы все его увидели.',
 
 ];

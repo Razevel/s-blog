@@ -15,7 +15,7 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 ?>
 
 <div class="blog-section">
-	<a href="single.html">
+	<a href="<?=Url::to(['blog/article', 'id' => $article['id']])?>">
 		<img src="<?=$img_path?>" alt="<?=$article['title']?>"/>
 	</a>
 	<div class="grid">
