@@ -1,5 +1,14 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminContact' => [
+    	'email' => 'krowstel@gmail.com',
+    	'phone' => '+7 (960) 527-65-67',
+    	'vk' => 'https://vk.com/maximum_sveta',
+    	'google' => 'https://plus.google.com/u/0/104365982205952198684',
+    ],
+    'languages' => [
+    	'ru-RU',
+    	'en-US',
+    ],
 ];
