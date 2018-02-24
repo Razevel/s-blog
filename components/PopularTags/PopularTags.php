@@ -35,7 +35,7 @@ class PopularTags extends Widget{
 		 * количеством просмотров по последним 50ти добавленным
 		 * записям.
 		 */	
-		$tags = TopTagsOfLast50::find()->all();
+		$tags = TopTagsOfLast50::find()->limit($max)->all();
 
 		$html = '<ul class="popular-tag">';
 

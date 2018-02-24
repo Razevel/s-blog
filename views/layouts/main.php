@@ -70,9 +70,12 @@ AppAsset::register($this);
             </span>
             <div class="clear"> </div>
             <div class="navg">
-                <ul class="res">
-                    <li><a class="active" href="<?=Url::to(['blog/index']);?>"><?=Yii::t('app', 'BLOG')?></a></li>
-                </ul>
+                <div class="btn-group">
+                    <a href="<?=Url::to(['blog/language', 'lang' => 'ru-RU'])?>" class="btn btn-default <?php if(Yii::$app->language == 'ru-RU') echo 'active';?>">RU                       
+                    </a>
+                    <a href="<?=Url::to(['blog/language', 'lang' => 'en-US'])?>" class="btn btn-default <?php if(Yii::$app->language == 'en-US') echo 'active';?>">EN
+                    </a>
+                </div>
                 <script>
                     $( "span.menu").click(function() {
                         $("ul.res" ).slideToggle("slow", function() {                     

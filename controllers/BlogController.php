@@ -12,7 +12,14 @@ use yii\helpers\Html;
 
 class BlogController extends Controller
 {
+    public function init()
+    {
+        $session = Yii::$app->session;
+        if(isset($session['language'])){
+            Yii::$app->language = $session['language'];
+        }
 
+    }
     public function actions()
     {
         return [
@@ -22,6 +29,21 @@ class BlogController extends Controller
         ];
     }
 
+    public function actionLanguage($lang)
+    {
+        
+
+        $langs = Yii::$app->params['languages'];
+        if( in_array($lang, $langs) ){
+            $session = Yii::$app->session;
+            $session['language'] = $lang;
+        }
+        
+        if(Yii::$app->user->returnUrl != '/') 
+            return $this->goBack();
+        else return Yii::$app->request->referrer ? 
+                    $this->redirect(Yii::$app->request->referrer) : $this->goHome();
+    }
     /**
      * Displays homepage.
      *

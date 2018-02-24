@@ -54,7 +54,8 @@ $config = [
                 '/' => 'blog/index',
                 'blog/article/<id:\d+>' => 'blog/article',
                 'blog/category/<id:\d+>' => 'blog/category',
-                'blog/tag/<id:\d+>' => 'blog/tag',                
+                'blog/tag/<id:\d?>' => 'blog/tag',
+                'blog/<lang:(ru-RU|en-US)>' => 'blog/language'             
             ],
         ],
         
