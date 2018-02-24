@@ -6,7 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'language' => $params['languages'][0],
+    'language' => $params['languages'][1],
     'sourceLanguage' => 'en-US',
     'bootstrap' => ['log'],
     'aliases' => [
@@ -54,8 +54,7 @@ $config = [
                 '/' => 'blog/index',
                 'blog/article/<id:\d+>' => 'blog/article',
                 'blog/category/<id:\d+>' => 'blog/category',
-                'blog/tag/<id:\d+>' => 'blog/tag',
-                'blog/search/<pattern:\w">' => 'blog/search',
+                'blog/tag/<id:\d+>' => 'blog/tag',                
             ],
         ],
         

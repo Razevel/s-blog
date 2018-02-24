@@ -1,11 +1,12 @@
 <?php
 
 use app\components\CategoryNav\CategoryNav;
-
-use \yii\helpers\StringHelper;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
-			
-$this->title = Yii::t('app','New articles').' - SmileBlog.ru';
+use yii\helpers\Html;
+
+$this->title = $model['title'].' - SmileBlog.ru';
+//$this->title = Yii::t('app','New articles');
 ?>
 
 <?php foreach ($model['articles'] as $article): ?>
@@ -20,19 +21,18 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 	</a>
 	<div class="grid">
 	 	<div class="grid-left">
-		  	<span class="f"> </span>
+		  	<span class="f"></span>
 		   	<h3><?=date('d', $pub_time)?></h3>
 		   	<p><?=date('M', $pub_time)?></p>
 		</div>
 		<div class="grid-right">
 		  	<a href="<?=Url::to(['blog/article', 'id' => $article['id']])?>">
-				<h3><?=$article['title']?></h3>
+				<h3><?=Html::encode($article['title'])?></h3>
 			</a>
 			<p style="margin: 15px 0px">
-			
 			<?php foreach($article['tags'] as $tag): ?>
 				<a href="<?=Url::to(['blog/tag', 'id' => $tag['id']])?>">
-					#<?=$tag['title']?>
+					#<?=Html::encode($tag['title'])?>
 				</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<?php endforeach;?>
 			
@@ -44,14 +44,14 @@ $this->title = Yii::t('app','New articles').' - SmileBlog.ru';
 			  	</li>
 			  	<li>
 			  		<span class="box"> </span>
-			  		<a href="#"><?=$article['category']['title']?></a>
+			  		<a href="<?=Url::to(['blog/category', 'id' => $article['category']['id']])?>"><?=Html::encode($article['category']['title'])?></a>
 			  	</li>
 				<li>
 					<span class="comm"> </span>
 					<a href="<?=Url::to(['blog/article', 'id' => $article['id'], '#' => 'comments'])?>"><?=Yii::t('app', 'Comments')?> (0)</a>
 				</li>
 			</ul>
-			<p><?=StringHelper::truncate($article['text'], 150, '...')?></p>
+			<p><?=StringHelper::truncate(Html::encode($article['text']), 150, '...')?></p>
 			<a class="bwn" href="<?=Url::to(['blog/article', 'id' => $article['id']])?>">
 				<?=Yii::t('app', 'READ MORE')?>
 			</a>

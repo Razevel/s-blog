@@ -31,7 +31,7 @@ class BlogController extends Controller
     {
         //Заголовок контентной части в layout
         $this->view->params['subTitle'] = Yii::t('app', 'NEW ARTICLES');
-    	
+    	$model['title'] = Yii::t('app', 'New articles');
         /**
 		* В параметрах есть блок настроек главной страницы,
 		* в том числе кол-во новых записей.
@@ -53,7 +53,7 @@ class BlogController extends Controller
     {
         //Заголовок контентной части в layout
         $this->view->params['subTitle'] = '';
-       
+        
         //Передаем в представление статью
         $model['article'] = Article::findOne($id);
         return $this->render('article', compact('model'));
@@ -61,14 +61,13 @@ class BlogController extends Controller
 
     public function actionCategory($id)
     {
+
         //Получаем категорию
         $category = Category::findOne($id);
         
         //Заголовок контентной части в layout
-        $this->view->params['subTitle'] =   sprintf("%s \"%s\"",
-                                                Yii::t('app', 'ALL IN CATEGORY'),
-                                                $category['title']
-                                            );
+        $this->view->params['subTitle'] = Yii::t('app', 'ALL IN CATEGORY').' "'.$category['title'].'"';
+        $model['title'] = Yii::t('app', $category['title']);
         //Получаем статьи
         $model['articles'] = $category->getArticles()
                                     ->orderBy(['pub_date' => SORT_DESC])
@@ -97,8 +96,9 @@ class BlogController extends Controller
         //Получаем тег
         $tag = Tag::findOne($id);
 
-        //Заголовок контентной части в layout
+        //Заголовок контентной части в layout и заголовок вкладки
         $this->view->params['subTitle'] = Yii::t('app', 'ALL BY TAG').' #'.$tag['title'];
+        $model['title'] = '#'.$tag['title'].' - SmileBlog.ru';
 
         //Передаем в представление все статьи с данным тегом
         $model['articles'] = $tag->articles;
@@ -114,7 +114,7 @@ class BlogController extends Controller
         }
 
         $pattern = Html::encode($pattern);
-        $title = Yii::t('app', 'SEARCH EVERYWHERE: "{pattern}"');
+        $title = Yii::t('app', 'Search result: "{pattern}"');
         $this->view->params['subTitle'] = str_replace("{pattern}", $pattern, $title);
 
         

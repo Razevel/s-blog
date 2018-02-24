@@ -15,16 +15,16 @@ return [
         'indexArticlesCount' => '3',
 
         'categoriesNav' => [
-            'cacheTime' => '0',
+            'cacheTime' => '60*15',
         ],
 
         'popularArticles' => [
             'count' => '3',
-            'cacheTime' => '0',
+            'cacheTime' => '60*15',
         ],
         'popularTags' => [
             'count' => '5',
-            'cacheTime' => '0',
+            'cacheTime' => '60*15',
         ],
     ]
 ];

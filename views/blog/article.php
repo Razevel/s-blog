@@ -2,10 +2,13 @@
 
 use app\components\CategoryNav\CategoryNav;
 
-use \yii\helpers\StringHelper;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
-			
-$this->title =  'Название статьи - SmileBlog.ru';
+use yii\helpers\Html;
+
+$this->title =  StringHelper::truncate(Html::encode($model['article']['title']), 50, '...').' - SmileBlog.ru';
+
+
 $article = $model['article'];
 $img_path = Url::to('@web/images/articles/'.$article['image']);
 $pub_time = strtotime($article['pub_date']);
@@ -20,7 +23,7 @@ $pub_time = strtotime($article['pub_date']);
 		<p><?=date('M', $pub_time)?></p>
 	</div>
 	<div class="grid-right">
-		<h3><?=$article['title']?></h3>
+		<h3><?=Html::encode($article['title'])?></h3>
 		<ul class="blog-list" style="margin-top: 15px;">
 			  	<li>
 			  		<span class="mike"> </span>
@@ -28,7 +31,7 @@ $pub_time = strtotime($article['pub_date']);
 			  	</li>
 			  	<li>
 			  		<span class="box"> </span>
-			  		<a href="#"><?=$article->category['title']?></a>
+			  		<a href="#"><?=Html::encode($article->category['title'])?></a>
 			  	</li>
 				<li>
 					<span class="comm"> </span>
@@ -40,16 +43,16 @@ $pub_time = strtotime($article['pub_date']);
 
 </div>
 
-<div class="blog-para">
-
-<?=$article['text']?>
-
-</div>
+<div class="blog-para"><?=$article['text']?></div>
 
 <div class="tags">
 	<ul>
 		<?php foreach ($article->tags as $tag): ?>
-		<li><a href="<?=Url::to(['blog/tag', 'id' => $tag['id']])?>">#<?=$tag['title']?></a></li>
+		<li>
+			<a href="<?=Url::to(['blog/tag', 'id' => $tag['id']])?>">
+				#<?=Html::encode($tag['title'])?>
+			</a>
+		</li>
 		<?php endforeach;?>
 	</ul>
 </div>
@@ -58,7 +61,7 @@ $pub_time = strtotime($article['pub_date']);
 	<a name="comments"></a>
     <h3><?=Yii::t('app', 'LEAVE A COMMENT')?></h3>
     <p>
-    	<?=Yii::t('app', '')?> 
+    	<?=Yii::t('app', 'Tell everyone what You think about it.')?><br>
     	<?=Yii::t('app', 'Leave a comment so that other users know about it.')?>
     </p>
     <input type="text" value="<?=Yii::t('app', 'Your Name')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Your Name')?>;}"/>

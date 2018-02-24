@@ -109,15 +109,15 @@ AppAsset::register($this);
                     <h3><?=Yii::t('app', 'POPULAR ARTICLES')?></h3>
                     <?=PopularArticles::widget()?>
                     
-                    
                     <h3><?=Yii::t('app', 'POPULAR TAGS')?></h3>
                     <?=PopularTags::widget()?>
 
-                    <h3>
-                        <a href="<?=Url::to(['/blog/tag'])?>">
+                    
+                    <a href="<?=Url::to(['/blog/tag'])?>">
+                        <h3>
                             <?=Yii::t('app', 'ALL TAGS')?>
-                        </a>
-                    </h3>
+                        </h3>
+                    </a>
 
                     <h3>SUBSCRIBE FOR NEWSLETTER</h3>
                     <div class="subscribe">
