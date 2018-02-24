@@ -14,13 +14,13 @@ return [
     'NEW ARTICLES' => 'НОВЫЕ ЗАПИСИ',
     'ALL IN CATEGORY' => 'ВСЕ ЗАПИСИ ИЗ КАТЕГОРИИ',
     'ALL BY TAG' => 'ВСЕ ЗАПИСИ ПО ТЕГУ',
-    
+    'ALL ARTICLES' => 'ВСЕ ЗАПИСИ',
 
 
 	//Browser Tab Titles
 	'New articles' => 'Новые записи',
     'All tags' => 'Все теги',
-    
+    'All articles' => 'Все статьи',
 
 
 

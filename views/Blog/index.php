@@ -62,18 +62,16 @@ $this->title = $model['title'].' - SmileBlog.ru';
 <hr style="border-color: rgba(0,0,0,0.3);">
 <?php endforeach; ?>
 
+
 <div class="pag-nations">
-	<ul class="p_n-list">
-		<li><a href="#">Prev</a></li>
-		<li><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">More</a></li>
-		<li><a href="#">19</a></li>
-		<li><a href="#">20</a></li>
-		<li><a href="#">Next</a></li>
-	</ul>
+
+<?= \yii\widgets\LinkPager::widget(
+	[
+		'pagination' => $pages, 
+	]) ?>
+
 </div>
+
 			
 			
 	

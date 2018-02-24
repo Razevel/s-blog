@@ -51,10 +51,15 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'blog/all-articles/<page:\d?>' => 'blog/all-articles',
+                '/<page:\d+>' => 'blog/index',
                 '/' => 'blog/index',
                 'blog/article/<id:\d+>' => 'blog/article',
-                'blog/category/<id:\d+>' => 'blog/category',
-                'blog/tag/<id:\d?>' => 'blog/tag',
+                'blog/category/<id:\d+>/<page:\d+>' => 'blog/category',
+                'blog/category/<id:\d+>/' => 'blog/category',
+                'blog/tag/<id:\d+>/<page:\d+>' => 'blog/tag',
+                'blog/tag/<id:\d+>' => 'blog/tag',
+                'blog/tag' => 'blog/tag',
                 'blog/<lang:(ru-RU|en-US)>' => 'blog/language'             
             ],
         ],
@@ -64,11 +69,6 @@ $config = [
                 'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages',
-                    //'sourceLanguage' => 'en-US',
-                    //'fileMap' => [
-                    //    'app'       => 'app.php',
-                    //    'app/error' => 'error.php',
-                    //],
                 ],
             ],
         ],

@@ -106,11 +106,12 @@ $this->title = Yii::t('app','Search result ').' - SmileBlog.ru';
 	</div>
 	<hr style="border-color: rgba(0,0,0,0.3);">
 	<?php endforeach; ?>
-
+	<?= \yii\widgets\LinkPager::widget(['pagination' => $pages]) ?>
 <?php else: ?>
 	<p style="margin: 0.7em;"><?=Yii::t('app','Nothing found')?> :(</p>
 <?php endif; ?>
-			
+	
+
 			
 	
 

@@ -112,6 +112,12 @@ AppAsset::register($this);
                     <h3><?=Yii::t('app', 'POPULAR ARTICLES')?></h3>
                     <?=PopularArticles::widget()?>
                     
+                    <a href="<?=Url::to(['/blog/all-articles'])?>">
+                        <h3>
+                            <?=Yii::t('app', 'ALL ARTICLES')?>
+                        </h3>
+                    </a>
+
                     <h3><?=Yii::t('app', 'POPULAR TAGS')?></h3>
                     <?=PopularTags::widget()?>
 

@@ -21,7 +21,7 @@ class PopularTags extends Widget{
 		* В параметрах есть блок настроек главной страницы,
 		* в том числе кол-во выводимых тегов.
 		*/
-		$params = Yii::$app->params['mainPageRules']['popularTags'];
+		$params = Yii::$app->params['popularTags'];
 		$max = $params['count'];
         $cacheTime = $params['cacheTime'];
         

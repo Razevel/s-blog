@@ -11,20 +11,23 @@ return [
     	'ru-RU',
     	'en-US',
     ],
-    'mainPageRules' => [
-        'indexArticlesCount' => '3',
+    
+    'indexMaxArticles' => '3',
 
-        'categoriesNav' => [
-            'cacheTime' => '0',
-        ],
+    'pageSize' => '1',
 
-        'popularArticles' => [
-            'count' => '3',
-            'cacheTime' => '0',
-        ],
-        'popularTags' => [
-            'count' => '8',
-            'cacheTime' => '0',
-        ],
-    ]
+    'categoriesNav' => [
+        'cacheTime' => '0',
+    ],
+
+    'popularArticles' => [
+        'count' => '5',
+        'cacheTime' => '0',
+    ],
+
+    'popularTags' => [
+        'count' => '8',
+        'cacheTime' => '0',
+    ],
+    
 ];

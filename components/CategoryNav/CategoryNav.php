@@ -19,7 +19,7 @@ class CategoryNav extends Widget{
 	public function run()
 	{
 		//Получаем параметр времени кеширования
-		$params = Yii::$app->params['mainPageRules']['categoriesNav'];
+		$params = Yii::$app->params['categoriesNav'];
 		$cacheTime = $params['cacheTime'];
 
 

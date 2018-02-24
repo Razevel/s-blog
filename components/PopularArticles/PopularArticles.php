@@ -22,7 +22,7 @@ class PopularArticles extends Widget{
 		* В параметрах есть блок настроек главной страницы,
 		* в том числе кол-во выводимых тегов.
 		*/
-		$params = Yii::$app->params['mainPageRules']['popularArticles'];
+		$params = Yii::$app->params['popularArticles'];
 		$max = $params['count'];
         $cacheTime = $params['cacheTime'];
 
