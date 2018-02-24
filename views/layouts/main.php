@@ -10,6 +10,7 @@ use \yii\helpers\StringHelper;
 use app\assets\AppAsset;
 use app\components\CategoryNav\CategoryNav;
 use app\components\PopularTags\PopularTags;
+use app\components\PopularArticles\PopularArticles;
 
 
 AppAsset::register($this);
@@ -102,12 +103,9 @@ AppAsset::register($this);
                     <h3><?=Yii::t('app', 'CATEGORIES')?></h3>
                     <?=CategoryNav::widget(); ?>
                     
-                    <h3>POPULAR POSTS</h3>
-                    <ul class="popular">
-                        <li><h5> Make a Type Specimen Book</h5><span class="g"> </span><a href="#">1280</a><span class="h"> </span><a href="#">Milk</a></li>
-                        <li><h5>Most Popular Post</h5><span class="g"> </span><a href="#">1011</a><span class="h"> </span><a href="#">Elly</a></li>
-                        <li><h5> Popularised Post</h5><span class="g"> </span><a href="#">956</a><span class="h"> </span><a href="#">Vall</a></li>
-                    </ul>
+                    <h3><?=Yii::t('app', 'POPULAR ARTICLES')?></h3>
+                    <?=PopularArticles::widget()?>
+                    
                     
                     <h3><?=Yii::t('app', 'POPULAR TAGS')?></h3>
                     <?=PopularTags::widget()?>

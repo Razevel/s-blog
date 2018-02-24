@@ -12,7 +12,19 @@ return [
     	'en-US',
     ],
     'mainPageRules' => [
-        'aticlesCount' => '3',
+        'indexArticlesCount' => '3',
 
+        'categoriesNav' => [
+            'cacheTime' => '0',
+        ],
+
+        'popularArticles' => [
+            'count' => '3',
+            'cacheTime' => '0',
+        ],
+        'popularTags' => [
+            'count' => '5',
+            'cacheTime' => '0',
+        ],
     ]
 ];

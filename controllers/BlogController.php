@@ -34,7 +34,7 @@ class BlogController extends Controller
 		* В параметрах есть блок настроек главной страницы,
 		* в том числе кол-во новых записей.
 		*/
-    	$max = Yii::$app->params['mainPageRules']['aticlesCount'];
+    	$max = Yii::$app->params['mainPageRules']['popularArticles']['count'];
         
         //Получаем N самых свежих записей.
         $model['articles'] = Article::find()
