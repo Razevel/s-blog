@@ -119,20 +119,28 @@ class BlogController extends Controller
 
         
         $pattern = '%'.$pattern.'%';
-        //['like', 'name', '%tester', false] will generate name LIKE '%tester'.
-        $model['articles'] = Article::find()
+        
+        $model['result']['articles'] = Article::find()
                                     ->where(
                                         [
                                             'OR',
                                             ['like', 'title', $pattern, false],
-                                            []
-                                        ]);
-
+                                            ['like', 'text', $pattern, false]
+                                        ])
                                     ->orderby(['pub_date'=>SORT_DESC])                          
                                     ->with('category')
                                     ->with('tags')
                                     ->all();
-
+        
+        $model['result']['tags'] = Tag::find()
+                                    ->where(['like', 'title', $pattern, false])
+                                    ->with('articles')
+                                    ->all();
+        
+        $model['result']['categories'] = Category::find()
+                                    ->where(['like', 'title', $pattern, false])                     
+                                    ->with('articles')
+                                    ->all();
 
         return $this->render('search', compact('model'));
     }
