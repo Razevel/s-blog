@@ -21,7 +21,7 @@ $pub_time = strtotime($article['pub_date']);
 	</div>
 	<div class="grid-right">
 		<h3><?=$article['title']?></h3>
-		<ul class="blog-list">
+		<ul class="blog-list" style="margin-top: 15px;">
 			  	<li>
 			  		<span class="mike"> </span>
 			  		<a href="#">admin</a>
@@ -36,7 +36,7 @@ $pub_time = strtotime($article['pub_date']);
 				</li>
 			</ul>
 	</div>
-	<div class="clearfix"> </div>
+	<div class="clearfix" style="margin-bottom: 20px;"> </div>
 
 </div>
 
