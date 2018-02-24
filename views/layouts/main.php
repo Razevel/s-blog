@@ -94,11 +94,14 @@ AppAsset::register($this);
                 <div class="col-md-8 blog-left">
                     <?= $content ?>
                 </div>
-                <div class="col-md-4 blog-right"> 
-                    <div class="sear">
-                        <input type="text" value="SEARCH.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'SEARCH..';}"/>
+                <div class="col-md-4 blog-right">
+
+                    <?= Html::beginForm(Url::to(['/blog/search']), 'get', ['class' => 'sear']) ?>
+                   
+                        <input type="text" name="pattern" placeholder="<?=Yii::t('app', 'SEARCH...')?>" />
                         <input type="submit" value="">
-                    </div>
+                   
+                    <?= Html::endForm() ?>
                     
                     <h3><?=Yii::t('app', 'CATEGORIES')?></h3>
                     <?=CategoryNav::widget(); ?>
@@ -109,7 +112,13 @@ AppAsset::register($this);
                     
                     <h3><?=Yii::t('app', 'POPULAR TAGS')?></h3>
                     <?=PopularTags::widget()?>
-                    
+
+                    <h3>
+                        <a href="<?=Url::to(['/blog/tag'])?>">
+                            <?=Yii::t('app', 'ALL TAGS')?>
+                        </a>
+                    </h3>
+
                     <h3>SUBSCRIBE FOR NEWSLETTER</h3>
                     <div class="subscribe">
                         <p>Duis vitae velit mollis,Pellentesque lorem</p>
@@ -124,6 +133,7 @@ AppAsset::register($this);
         </div>
     </div>
 </div>
+
 <div class="footer">
     <div class="container">
         <div class="footer-main">
@@ -162,6 +172,7 @@ AppAsset::register($this);
             </div>
             
             <div class="clearfix"> </div>
+            
             <script type="text/javascript">
                 $(document).ready(function() {
                 /*
@@ -184,6 +195,7 @@ AppAsset::register($this);
                     $().UItoTop({ easingType: 'easeOutQuart' });
                 });
             </script>
+            
             <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
         </div>
     </div>

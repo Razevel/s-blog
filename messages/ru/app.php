@@ -29,5 +29,9 @@ return [
     'ALL IN CATEGORY' => 'ВСЕ ЗАПИСИ ИЗ КАТЕГОРИИ',
     'ALL BY TAG' => 'ВСЕ ЗАПИСИ ПО ТЕГУ',
     'POPULAR ARTICLES' => 'ПОПУЛЯРНЫЕ СТАТЬИ',
+    'ALL TAGS' => 'ВСЕ ТЕГИ',
+    'All tags' => 'Все теги',
+    'SEARCH...' => 'ПОИСК...',
+    'SEARCH EVERYWHERE: "{pattern}"' => 'ИСКАТЬ ВЕЗДЕ ПО ЗАПРОСУ: "{pattern}"',
 
 ];

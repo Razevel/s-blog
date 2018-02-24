@@ -820,8 +820,9 @@ ul.blog-list li a:hover{
 .blog-right h3 {
 	font-size: 1.2em;
 	font-weight: 400;
-	color: #9b242d;
-	margin: 2em 0px;
+	color: #9b242d;    
+	margin: 1.5em 0px;
+    margin-top: 0.8em;
 }
 ul.blog-rig-list {
 	list-style: none;

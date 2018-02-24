@@ -7,6 +7,8 @@ use yii\web\Controller;
 use app\models\Article;
 use app\models\Category;
 use app\models\Tag;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 class BlogController extends Controller
 {
@@ -76,8 +78,22 @@ class BlogController extends Controller
         return $this->render('index', compact('model'));
     }
 
-    public function actionTag($id)
+    public function actionTag($id = null)
     {
+        //Если нет параметра, выводим все
+        if($id == null){
+            $tags = Tag::find()->with('articles')->all();
+
+            //Заголовок контентной части в layout
+            $this->view->params['subTitle'] = Yii::t('app', 'ALL TAGS');
+            
+            //Передаем в представление все статьи с данным тегом
+            $model['tags'] = $tags;
+            return $this->render('tags', compact('model'));
+        }
+
+
+
         //Получаем тег
         $tag = Tag::findOne($id);
 
@@ -89,6 +105,36 @@ class BlogController extends Controller
         return $this->render('index', compact('model'));
     }
 
+    
 
+    public function actionSearch($pattern = null)
+    {   
+        if($pattern == null){
+            Yii::$app->response->redirect(Url::to('index'));
+        }
+
+        $pattern = Html::encode($pattern);
+        $title = Yii::t('app', 'SEARCH EVERYWHERE: "{pattern}"');
+        $this->view->params['subTitle'] = str_replace("{pattern}", $pattern, $title);
+
+        
+        $pattern = '%'.$pattern.'%';
+        //['like', 'name', '%tester', false] will generate name LIKE '%tester'.
+        $model['articles'] = Article::find()
+                                    ->where(
+                                        [
+                                            'OR',
+                                            ['like', 'title', $pattern, false],
+                                            []
+                                        ]);
+
+                                    ->orderby(['pub_date'=>SORT_DESC])                          
+                                    ->with('category')
+                                    ->with('tags')
+                                    ->all();
+
+
+        return $this->render('search', compact('model'));
+    }
 
 }

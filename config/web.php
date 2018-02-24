@@ -55,6 +55,7 @@ $config = [
                 'blog/article/<id:\d+>' => 'blog/article',
                 'blog/category/<id:\d+>' => 'blog/category',
                 'blog/tag/<id:\d+>' => 'blog/tag',
+                'blog/search/<pattern:\w">' => 'blog/search',
             ],
         ],
         
