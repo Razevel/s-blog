@@ -101,7 +101,7 @@ AppAsset::register($this);
 
                     <?= Html::beginForm(Url::to(['/blog/search']), 'get', ['class' => 'sear']) ?>
                    
-                        <input type="text" name="pattern" placeholder="<?=Yii::t('app', 'SEARCH...')?>" />
+                        <input type="text" name="pattern" placeholder="<?=Yii::t('app', 'SEARCH')?>..." />
                         <input type="submit" value="">
                    
                     <?= Html::endForm() ?>
@@ -119,8 +119,7 @@ AppAsset::register($this);
                     </a>
 
                     <h3><?=Yii::t('app', 'POPULAR TAGS')?></h3>
-                    <?=PopularTags::widget()?>
-
+                    <?=PopularTags::widget()?>                   
                     
                     <a href="<?=Url::to(['/blog/tag'])?>">
                         <h3>
@@ -128,16 +127,17 @@ AppAsset::register($this);
                         </h3>
                     </a>
 
-                    <h3>SUBSCRIBE FOR NEWSLETTER</h3>
+                    <h3><?=Yii::t('app', 'SUBSCRIBE FOR NEWSLETTER')?></h3>
                     <div class="subscribe">
-                        <p>Duis vitae velit mollis,Pellentesque lorem</p>
-                    <div class="sub">
-                        <input type="text" value="YOUR EMAIL ADDRESS" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'YOUR EMAIL ADDRESS';}"/>
-                        <input type="submit" value="SUBSCRIBE">
+                        <p><?=Yii::t('app', 'Subscribe to receive news first')?></p>
+                   
+                        <?= Html::beginForm(Url::to(['/blog/subscribe']), 'post', ['class' => 'sub']) ?>
+                            <input type="text" name="email" placeholder="<?=Yii::t('app', 'YOUR EMAIL ADDRESS')?>" />
+                            <input type="submit" value="<?=Yii::t('app', 'SUBSCRIBE')?>">
+                        <?= Html::endForm() ?>
                     </div>
+                    <div class="clearfix"> </div>
                 </div>
-                <div class="clearfix"> </div>
-            </div>
             </div>
         </div>
     </div>
@@ -154,19 +154,13 @@ AppAsset::register($this);
                 </ul>
             </div>
             <div class="footer-top">
-                <div class="col-md-4 footer-left">
+                <div class="col-md-4 footer-left col-md-offset-2">
                     <h3><?=Yii::t('app', 'Follow us')?></h3>
                     <ul>
                         <li><a href="<?=Yii::$app->params['adminContact']['vk']?>"><span class="a"> </span></a></li>
                         <li><a href="<?=Yii::$app->params['adminContact']['google']?>"><span class="c"> </span></a></li>
                     </ul>
-                </div>
-                
-                <div class="col-md-4 footer-middle">
-                    <h3><?=Yii::t('app', 'News letter')?></h3>
-                    <input type="text" value="<?=Yii::t('app', 'Enter your email')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?=Yii::t('app', 'Enter your email')?>';}"/>
-                    <input type="submit" value="<?=Yii::t('app', 'Subscribe')?>">
-                </div>
+                </div>                              
                 
                 <div class="col-md-4 footer-right">
                     <h3><?=Yii::t('app', 'Contact us')?></h3>

@@ -10,6 +10,20 @@ use app\models\Tag;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\data\Pagination;
+use yii\validators\EmailValidator;
+
+/**
+* getPagination 291 
+* actionLanguage 54
+* actionIndex 80
+* actionArticle 110
+* actionCategory 127
+* actionTag 156
+* actionAllArticle 199
+* actionSearch 233
+* actionSubscribe 311
+*/ 
+
 
 class BlogController extends Controller
 {
@@ -100,8 +114,10 @@ class BlogController extends Controller
         
         //Передаем в представление статью
         $model['article'] = Article::findOne($id);
+
         return $this->render('article', compact('model'));
     }
+
 
 
     /**
@@ -110,6 +126,9 @@ class BlogController extends Controller
     */
     public function actionCategory($id)
     {
+        //Получаем категорию
+        $category = Category::findOne($id);
+
         //Заголовок контентной части в layout
         $this->view->params['subTitle'] = Yii::t('app', 'ALL IN CATEGORY').' "'.$category['title'].'"';
         
@@ -117,7 +136,6 @@ class BlogController extends Controller
         $model['title'] = Yii::t('app', $category['title']);
         
         //Получаем все статьи данной категории
-        $category = Category::findOne($id);
         $query = $category->getArticles()->orderBy(['pub_date' => SORT_DESC]);
         
         //Создаем пагинатор
@@ -207,17 +225,17 @@ class BlogController extends Controller
     *   -статьи
     *     - в заголовке
     *     - в тексте
-    *     - в дате(строка YYYY-MM-DD)
     *   
     *   -теги в названии
     *   -категории в названии
     *
-    */
+    */ 
     public function actionSearch($pattern = null)
     {   
         //нет запроса - нет ответа, до свидания.
         if($pattern == null){
-            Yii::$app->response->redirect(Url::to('index'));
+            return Yii::$app->request->referrer ? 
+                    $this->redirect(Yii::$app->request->referrer) : $this->goHome();
         }
 
         //Мало ли что
@@ -232,14 +250,12 @@ class BlogController extends Controller
         //то что будем вставлять в запрос WHERE LIKE %any%
         $pattern = '%'.$pattern.'%';
          
-        //Получаем все записи, в тексте которых есть что-то похожее или совпадает дата
-        //дата как строка - 2018-02-13
+        //Получаем все записи, в тексте которых есть что-то похожее
         $query = Article::find()->where(
                                     [
                                         'OR',
                                         ['like', 'title', $pattern, false],
                                         ['like', 'text', $pattern, false],
-                                        ['like', 'pub_date', $pattern, false]
                                     ])
                                 ->orderby(['pub_date'=>SORT_DESC])                          
                                 ->with('category')
@@ -259,7 +275,7 @@ class BlogController extends Controller
         
         //Получаем все категории, в тексте которых есть что-то похожее
         $model['result']['categories'] = Category::find()
-                                    ->where(['like', 'title', $pattern, false])                     
+                                    ->where(['like', 'title', $pattern, false])               
                                     ->with('articles')
                                     ->all();
 
@@ -286,4 +302,53 @@ class BlogController extends Controller
             'pageSizeParam' => false, 'forcePageParam' => false,
         ]);
     }
+
+
+    /**
+    * Контроллер подписки,
+    * проверяет email и отправляет письмо с последними N статьями
+    */
+    public function actionSubscribe()
+    {   
+        //Достаем адрес почты, если его нет выбрасываем ошибку
+        $email = Yii::$app->request->post('email');
+        if($email == null)             
+            throw new \yii\web\HttpException(400);
+
+        //Заголовок контентной части в layout
+        $this->view->params['subTitle'] = '';
+
+        //Куда возвращать пользователя
+        $backUrl = Yii::$app->request->referrer ? Yii::$app->request->referrer : Url::Home();
+        
+        //Валидатор адреса
+        $validator = new EmailValidator();
+
+        //Проверяем, нормальный ли адрес
+        $result['success'] = $validator->validate($email, $error);
+
+        //Если все хорошо, отправляем письмо 
+        if($result['success']){
+
+            //Параметры письма, тема, кол-во постов и тд
+            $params = Yii::$app->params['emailSubscription'];
+            
+            //Достаем статьи
+            $articles = Article::find()->orderby(['pub_date'=>SORT_DESC])
+                                    ->limit($params['articlesCount'])
+                                    ->with('category')
+                                    ->all();
+
+            //Устанавливаем параметры и отправляем
+            Yii::$app->mailer->compose('lastArticles', compact('articles'))
+                    ->setFrom([Yii::$app->params['mailerEmail'] => $params['from']])
+                    ->setTo($email)
+                    ->setSubject(Yii::t('app', $params['subject']))
+                    ->send();
+        }
+
+        return $this->render('_emailValidateing', compact('result', 'error', 'backUrl'));
+    }
+
+
 }

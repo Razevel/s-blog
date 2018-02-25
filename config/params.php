@@ -7,6 +7,7 @@ return [
     	'vk' => 'https://vk.com/maximum_sveta',
     	'google' => 'https://plus.google.com/u/0/104365982205952198684',
     ],
+
     'languages' => [
     	'ru-RU',
     	'en-US',
@@ -14,20 +15,36 @@ return [
     
     'indexMaxArticles' => '3',
 
-    'pageSize' => '1',
+    'pageSize' => '2',
 
     'categoriesNav' => [
-        'cacheTime' => '0',
+        'cacheTime' => '60*60',
+    ],
+
+    'mailer' => [
+        'host' => 'smtp.gmail.com',
+        'username' => 'krowstel',
+        'password' => 'Egor10011998',
+        'port' => '465',
+        'encryption' => 'ssl',
+    ],
+
+    'mailerEmail' => 'smileblog@inbox.ru',
+
+    'emailSubscription' => [
+        'articlesCount' => '5',
+        'from' => 'SmileBlog',
+        'subject' => 'You have not visited us for a long time. Here are posts you could skip',
     ],
 
     'popularArticles' => [
-        'count' => '5',
-        'cacheTime' => '0',
+        'count' => '4',
+        'cacheTime' => '5*60',
     ],
 
     'popularTags' => [
         'count' => '8',
-        'cacheTime' => '0',
+        'cacheTime' => '15*60',
     ],
     
 ];
