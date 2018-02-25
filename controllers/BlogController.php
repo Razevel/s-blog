@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\Article;
+use app\models\Comment;
 use app\models\Category;
 use app\models\Tag;
 use yii\helpers\Url;
@@ -90,7 +91,8 @@ class BlogController extends Controller
         $query = Article::find()
                         ->orderby(['pub_date'=>SORT_DESC])							
                         ->with('category')
-                        ->with('tags');
+                        ->with('tags')
+                        ->with('comments');
 
         //Создаем пагинатор
         $pages = $this->getPagination(Yii::$app->params['indexMaxArticles']);
@@ -114,7 +116,11 @@ class BlogController extends Controller
         
         //Передаем в представление статью
         $model['article'] = Article::findOne($id);
-
+        $model['comments'] = Comment::find()->where(['article_id' => $id])
+                                            ->orderBy(['pub_date_time' => SORT_DESC])
+                                            ->all();
+        $model['article']->views++;
+        $model['article']->save();
         return $this->render('article', compact('model'));
     }
 
@@ -136,7 +142,11 @@ class BlogController extends Controller
         $model['title'] = Yii::t('app', $category['title']);
         
         //Получаем все статьи данной категории
-        $query = $category->getArticles()->orderBy(['pub_date' => SORT_DESC]);
+        $query = $category->getArticles()
+                            ->orderBy(['pub_date' => SORT_DESC])
+                            ->with('comments')
+                            ->with('tags')
+                            ->with('category');
         
         //Создаем пагинатор
         $pages = $this->getPagination($query->count());
@@ -179,7 +189,10 @@ class BlogController extends Controller
         $model['title'] = '#'.$tag['title'];
 
         //Получаем статьи с данным тегом
-        $query = $tag->getArticles()->orderBy(['pub_date' => SORT_DESC]);
+        $query = $tag->getArticles()->with('comments')
+                                    ->with('tags')
+                                    ->with('category')
+                                    ->orderBy(['pub_date' => SORT_DESC]);
         
         //Создаем пагинатор
         $pages = $this->getPagination($query->count());
@@ -207,7 +220,8 @@ class BlogController extends Controller
         //Получаем все статьи
         $query = Article::find()->orderby(['pub_date'=>SORT_DESC])
                                 ->with('category')
-                                ->with('tags');
+                                ->with('tags')
+                                ->with('comments');
 
         //Создаем пагинатор
         $pages = $this->getPagination($query->count());
@@ -259,7 +273,8 @@ class BlogController extends Controller
                                     ])
                                 ->orderby(['pub_date'=>SORT_DESC])                          
                                 ->with('category')
-                                ->with('tags');
+                                ->with('tags')
+                                ->with('comments');
 
         //Создаем пагинатор
         $pages = $this->getPagination($query->count());
@@ -347,7 +362,23 @@ class BlogController extends Controller
                     ->send();
         }
 
-        return $this->render('_emailValidateing', compact('result', 'error', 'backUrl'));
+        return $this->render('_emailValidating', compact('result', 'error', 'backUrl'));
+    }
+
+
+    public function actionAddComment($id)
+    {
+        $model = new Comment();
+        $model->load(Yii::$app->request->post());
+
+        $model['article_id'] = $id;
+        $model['pub_date_time'] = date("Y-m-d H:i:s");
+    
+        if ($model->save()) {
+            return $this->redirect(Url::to(['blog/article', 'id'=>$id]));
+        }
+         throw new \yii\web\HttpException(400);
+        
     }
 
 

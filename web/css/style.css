@@ -369,6 +369,33 @@ small.brown {
 	padding: 8px 15px;
 }
 /*--news end here--*/
+/* Normal Bubble */
+div.bubble {
+	width: auto;
+	font-size: 0.75em;
+	margin-bottom: 24px;
+}
+
+div.bubble blockquote {
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #c9c2c1;
+	background-color: #fff;
+}
+
+div.bubble blockquote p {
+	margin: 10px;
+	padding: 0px;
+}
+
+div.bubble cite {
+	position: relative;
+	margin: 0px;
+	padding: 7px 0px 0px 15px;
+	top: 6px;
+	background: transparent url(../images/tip.gif) no-repeat 20px 0;
+	font-style: normal;
+}
 /*--footer start here--*/
 .footer-left h3 a{
 	text-decoration :none;
@@ -2617,4 +2644,14 @@ ul.p_n-list li {
 	margin: 6em 0em 0px 2em;
 }
 }
-/*--media quiries end here--*/
+
+#comment-name{
+	width: 100%;
+}
+#comment-email{
+	width: 100%;
+
+}
+#comment-text{
+	width: 100%;
+}

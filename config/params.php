@@ -39,7 +39,7 @@ return [
 
     'popularArticles' => [
         'count' => '4',
-        'cacheTime' => '5*60',
+        'cacheTime' => '0',
     ],
 
     'popularTags' => [

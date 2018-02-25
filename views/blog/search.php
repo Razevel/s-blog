@@ -93,7 +93,7 @@ $this->title = Yii::t('app','Search result ').' - SmileBlog.ru';
 				  	</li>
 					<li>
 						<span class="comm"> </span>
-						<a href="<?=Url::to(['blog/article', 'id' => $article['id'], '#' => 'comments'])?>"><?=Yii::t('app', 'Comments')?> (0)</a>
+						<a href="<?=Url::to(['blog/article', 'id' => $article['id'], '#' => 'comments'])?>"><?=Yii::t('app', 'Comments')?> (<?=count($article['comments'])?>)</a>
 					</li>
 				</ul>
 				<p><?=StringHelper::truncate(Html::encode($article['text']), 150, '...')?></p>

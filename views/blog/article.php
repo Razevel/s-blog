@@ -1,19 +1,23 @@
 <?php
 
 use app\components\CategoryNav\CategoryNav;
-
+use app\models\Comment;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
-
+use yii\widgets\ActiveForm;
 $this->title =  StringHelper::truncate(Html::encode($model['article']['title']), 50, '...').' - SmileBlog.ru';
 
-
+$comment_model = new Comment();
 $article = $model['article'];
 $img_path = Url::to('@web/images/articles/'.$article['image']);
 $pub_time = strtotime($article['pub_date']);
 
 ?>
+
+
+<div class="blog-contact" id="blog-contact" style="margin-bottom: 3em">
+
 
 <img src="<?=$img_path?>" alt="<?=$article['title']?>"/>
 <div class="blog-grid">
@@ -31,11 +35,11 @@ $pub_time = strtotime($article['pub_date']);
 			  	</li>
 			  	<li>
 			  		<span class="box"> </span>
-			  		<a href="#"><?=Html::encode($article->category['title'])?></a>
+			  		<a href="<?=Url::to(['blog/category', 'id' => $article->category['id']])?>"><?=Html::encode($article->category['title'])?></a>
 			  	</li>
 				<li>
 					<span class="comm"> </span>
-					<a href="#"><?=Yii::t('app', 'Comments')?> (0)</a>
+					<a href="#comments"><?=Yii::t('app', 'Comments')?> (<?=count($article['comments'])?>)</a>
 				</li>
 			</ul>
 	</div>
@@ -57,16 +61,49 @@ $pub_time = strtotime($article['pub_date']);
 	</ul>
 </div>
 
-<div class="blog-contact">
-	<a name="comments"></a>
-    <h3><?=Yii::t('app', 'LEAVE A COMMENT')?></h3>
+<?php 
+$comment = new Comment(); 
+$form = ActiveForm::begin([
+	'action' => Url::to(['blog/add-comment', 'id' => $model['article']['id']])
+]); 
+?>
+	<h3><?=Yii::t('app', 'LEAVE A COMMENT')?></h3>
     <p>
     	<?=Yii::t('app', 'Tell everyone what You think about it.')?><br>
     	<?=Yii::t('app', 'Leave a comment so that other users know about it.')?>
     </p>
-    <input type="text" value="<?=Yii::t('app', 'Your Name')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Your Name')?>;}"/>
-    <input type="text" value="<?=Yii::t('app', 'Your Email')?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Your Email')?>;}"/>
-    <textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = <?=Yii::t('app', 'Message')?>'';}"/><?=Yii::t('app', 'Message')?></textarea>
-    <input type="submit" value="<?=Yii::t('app', 'LEAVE THE COMMENT')?>">
+   	<div class="row">
+   		<div class="col-md-6 col-xs-12 col-sm-6">
+	<?= $form->field($comment, 'name')->textInput([
+			    	'maxlength' => true,
+			    	'placeholder' => Yii::t('app', 'Your Name'),
+	])->label(false) ?>
+	</div>
+		<div class="col-md-6 col-xs-12 col-sm-6">
+	<?= $form->field($comment, 'email')->textInput([
+			    	'maxlength' => true,
+			    	'placeholder' => Yii::t('app', 'Your Email'),
+	])->label(false) ?>
+    </div>
+	</div>
+	<?= $form->field($comment, 'text')->textInput([
+    	'maxlength' => true,
+    	'placeholder' => Yii::t('app', 'Message'),
+    ])->label(false) ?>
+
+    <input type="submit" id="submit-comment" value="<?=Yii::t('app', 'LEAVE THE COMMENT')?>">
+
+<?php ActiveForm::end(); ?>
 </div>
+<hr>
+<a name="comments"></a>
+<?php foreach ($model['comments'] as $comment): ?>
+<div class="bubble">
+	<blockquote>
+		<p><?=$comment['text']?></p>
+	</blockquote>
+	<cite><strong><?=$comment['name']?></strong> on <?=$comment['pub_date_time']?></cite>
+</div>
+<hr>
+<?php endforeach;?>
 <div class="clearfix"> </div>
