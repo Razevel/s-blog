@@ -15,11 +15,17 @@ Thumbs.db
 # composer vendor dir
 /vendor
 
+#runtime
+/runtime/*
+
 # composer itself is not needed
 composer.phar
 
 # Mac DS_Store Files
 .DS_Store
+
+#runtime
+/runtime/*
 
 # phpunit itself is not needed
 phpunit.phar

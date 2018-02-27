@@ -12,7 +12,7 @@ use app\components\CategoryNav\CategoryNav;
 use app\components\PopularTags\PopularTags;
 use app\components\PopularArticles\PopularArticles;
 
-
+$this->params['subTitle'] = Html::encode($this->title);
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -93,52 +93,12 @@ AppAsset::register($this);
         <div class="container">
             <div class="blog-main">
                 <div class="blog-top">
-                    <?=isset($this->params['subTitle']) ? $this->params['subTitle'] : '' ?>
+                    <?=$this->params['subTitle']?>
                 </div>
-                <div class="col-md-8 blog-left">
-                    <?= $content ?>
-                </div>
-                <div class="col-md-4 blog-right">
-
-                    <?= Html::beginForm(Url::to(['/blog/search']), 'get', ['class' => 'sear']) ?>
-                   
-                        <input type="text" name="pattern" placeholder="<?=Yii::t('app', 'SEARCH')?>..." />
-                        <input type="submit" value="">
-                   
-                    <?= Html::endForm() ?>
-                    
-                    <h3><?=Yii::t('app', 'CATEGORIES')?></h3>
-                    <?=CategoryNav::widget(); ?>
-                    
-                    <h3><?=Yii::t('app', 'POPULAR ARTICLES')?></h3>
-                    <?=PopularArticles::widget()?>
-                    
-                    <a href="<?=Url::to(['/blog/all-articles'])?>">
-                        <h3>
-                            <?=Yii::t('app', 'ALL ARTICLES')?>
-                        </h3>
-                    </a>
-
-                    <h3><?=Yii::t('app', 'POPULAR TAGS')?></h3>
-                    <?=PopularTags::widget()?>                   
-                    
-                    <a href="<?=Url::to(['/blog/tag'])?>">
-                        <h3>
-                            <?=Yii::t('app', 'ALL TAGS')?>
-                        </h3>
-                    </a>
-
-                    <h3><?=Yii::t('app', 'SUBSCRIBE FOR NEWSLETTER')?></h3>
-                    <div class="subscribe">
-                        <p><?=Yii::t('app', 'Subscribe to receive news first')?></p>
-                   
-                        <?= Html::beginForm(Url::to(['/blog/subscribe']), 'post', ['class' => 'sub']) ?>
-                            <input type="text" name="email" placeholder="<?=Yii::t('app', 'YOUR EMAIL ADDRESS')?>" />
-                            <input type="submit" value="<?=Yii::t('app', 'SUBSCRIBE')?>">
-                        <?= Html::endForm() ?>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
+               
+                <?= $content ?>
+                
+                
             </div>
         </div>
     </div>

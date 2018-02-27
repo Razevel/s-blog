@@ -32,8 +32,8 @@ class ArticleTags extends \yii\db\ActiveRecord
         return [
             [['article_id', 'tag_id'], 'required'],
             [['article_id', 'tag_id'], 'integer'],
-            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::className(), 'targetAttribute' => ['article_id' => 'id']],
-            [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tags::className(), 'targetAttribute' => ['tag_id' => 'id']],
+            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Article::className(), 'targetAttribute' => ['article_id' => 'id']],
+            [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::className(), 'targetAttribute' => ['tag_id' => 'id']],
         ];
     }
 
@@ -54,7 +54,7 @@ class ArticleTags extends \yii\db\ActiveRecord
      */
     public function getArticle()
     {
-        return $this->hasOne(Articles::className(), ['id' => 'article_id']);
+        return $this->hasOne(Article::className(), ['id' => 'article_id']);
     }
 
     /**
@@ -62,6 +62,6 @@ class ArticleTags extends \yii\db\ActiveRecord
      */
     public function getTag()
     {
-        return $this->hasOne(Tags::className(), ['id' => 'tag_id']);
+        return $this->hasOne(Tag::className(), ['id' => 'tag_id']);
     }
 }

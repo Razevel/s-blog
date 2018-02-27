@@ -381,5 +381,11 @@ class BlogController extends Controller
         
     }
 
+    public function actionCrud()
+    {
+        $this->view->params['subTitle'] = 'CRUD';
+        return $this->render('crud');
+    }
+
 
 }
